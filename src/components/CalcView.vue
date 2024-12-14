@@ -71,7 +71,7 @@ function formatSearchList(lang: string): string {
       <div class="text-white">Stack-Size</div>
       <div class="text-white">AH-Price per Unit</div>
       <div class="text-white">Price per Effort</div>
-      <div>Manuel Work</div>
+      <div class="text-white">Manuel Work</div>
       <template v-for="(item, index) in items" :key="index">
         <div class="text-white">{{ item.gerName }}</div>
         <div class="text-white">{{ item.stackSize }}</div>
