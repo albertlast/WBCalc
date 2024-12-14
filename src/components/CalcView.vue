@@ -1,4 +1,9 @@
 <script setup lang="ts">
+interface MinMax {
+  min: number
+  max: number
+}
+
 import { ref } from 'vue'
 import { itemsList } from '@/composables/itemList'
 
@@ -62,23 +67,55 @@ function formatSearchList(lang: string): string {
 
   return text
 }
+
+function minMaxValue(): MinMax {
+  let min = -1
+  let max = -1
+
+  Object.keys(items.value).forEach((key) => {
+    const item = items.value[key]
+    if (item.price > 0) {
+      const totalPrice = (item.price * item.stackSize) / item.amount
+      if (min > totalPrice || (min === -1 && totalPrice > 0)) min = totalPrice
+      if (max < totalPrice || (max === -1 && totalPrice > 0)) max = totalPrice
+    }
+  })
+
+  return { min, max }
+}
+
+function colorProzent(value: number): number {
+  if (value < 1) return 0
+  const { min, max } = minMaxValue()
+  value = value - min
+  const distance = max - min
+  return parseInt((1 - value / distance) * 100)
+}
 </script>
 
 <template>
   <div class="mx-10">
-    <div class="grid grid-cols-5">
+    <div class="grid grid-cols-6">
       <div class="text-white">Name</div>
       <div class="text-white">Stack-Size</div>
       <div class="text-white">AH-Price per Unit</div>
+      <div class="text-white">Worst(0) Best(100)</div>
       <div class="text-white">Price per Effort</div>
-      <div class="text-white">Manuel Work</div>
+      <div class="text-white">Crafting Effort</div>
       <template v-for="(item, index) in items" :key="index">
         <div class="text-white">{{ item.gerName }}</div>
         <div class="text-white">{{ item.stackSize }}</div>
         <div class="">
           <input v-model="item.price" type="number" class="text-white bg-[#3D3D3D]" />
         </div>
-        <div class="text-white" :class="[item.price > 0 ? '' : 'opacity-25']">
+        <div class="text-white">
+          {{
+            colorProzent((item.price * item.stackSize) / item.amount) < 0
+              ? 0
+              : colorProzent((item.price * item.stackSize) / item.amount)
+          }}
+        </div>
+        <div class="text-white" :class="[item.price > 0 ? 'opacity-50' : 'opacity-25']">
           {{ formatNumber((item.price * item.stackSize) / item.amount) }}
         </div>
         <div class="text-white">{{ item.furtherWork ?? 'no' }}</div>
