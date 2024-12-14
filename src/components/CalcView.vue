@@ -60,7 +60,7 @@ function formatSearchList(lang: string): string {
       <template v-for="(item, index) in items" :key="index">
         <div>{{ item.gerName }}</div>
         <div>{{ item.stackSize }}</div>
-        <div><input v-model="item.price" type="number" /></div>
+        <div><input v-model="item.price" type="number" class="bg-gray-300" /></div>
         <div :class="[item.price > 0 ? '' : 'opacity-25']">
           {{ formatNumber((item.price * item.stackSize) / item.amount) }}
         </div>
@@ -70,7 +70,7 @@ function formatSearchList(lang: string): string {
   </div>
   <div class="mx-10">
     <button class="bg-black cursor-pointer text-white" @click="importValue">Import</button>
-    <textarea class="w-full border-solid border-black border-2 h-60" ref="importAH">
+    <textarea class="w-full border-solid border-black border-2 h-60 bg-gray-300" ref="importAH">
 'Preis', 'Name', 'Eigene?', 'Spitze?', 'Verfügbar'
 7557, 'Runenstoff', '', 'Nein', 642
 3481, 'Seidenstoff', '', 'Nein', 563
@@ -89,7 +89,7 @@ function formatSearchList(lang: string): string {
     >
   </div>
 
-  <div class="">
+  <div class="mx-10">
     <p>
       German:
       <br />
