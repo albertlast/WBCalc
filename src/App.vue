@@ -1,18 +1,10 @@
 <script setup lang="ts">
-import Calc from './components/Calc.vue'
+import CalcView from './components/CalcView.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
   <main>
-    <Calc />
+    <CalcView />
   </main>
 </template>
 
