@@ -3,7 +3,7 @@ import CalcView from './components/CalcView.vue'
 </script>
 
 <template>
-  <main class="h-full min-h-screen bg-gray-500">
+  <main class="h-full min-h-screen bg-[#1F1F1F]">
     <CalcView />
   </main>
 </template>
