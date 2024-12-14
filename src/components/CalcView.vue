@@ -33,6 +33,20 @@ function findItem(name: string): number {
 function formatNumber(number: number): string {
   return new Intl.NumberFormat().format(number)
 }
+
+function formatSearchList(lang: string): string {
+  let text = 'WarEffort'
+  if (lang === 'ger')
+    Object.keys(items.value).forEach((key) => {
+      text += '^"' + items.value[key].gerName + '"'
+    })
+  else
+    Object.keys(items.value).forEach((key) => {
+      text += '^"' + items.value[key].name + '"'
+    })
+
+  return text
+}
 </script>
 
 <template>
@@ -73,6 +87,21 @@ function formatNumber(number: number): string {
 6314688, 'Roher Tüpfelgelbschwanz', '', 'Nein', 1
 </textarea
     >
+  </div>
+
+  <div class="">
+    <p>
+      German:
+      <br />
+      <code class="border-black border-solid border-2">{{ formatSearchList('ger') }} </code>
+    </p>
+    <p>
+      English:
+      <br />
+      <code class="border-black border-solid border-2">
+        {{ formatSearchList('eng') }}
+      </code>
+    </p>
   </div>
 </template>
 
