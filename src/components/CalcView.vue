@@ -100,8 +100,8 @@ function colorProzent(value: number): number {
       <div class="text-white">Stack-Size</div>
       <div class="text-white">AH-Price per Unit</div>
       <div class="text-white">Worst(0) Best(100)</div>
-      <div class="text-white">Price per Effort</div>
       <div class="text-white">Per Trading</div>
+      <div class="text-white">Price per Effort</div>
       <div class="text-white">Crafting Effort</div>
       <template v-for="(item, index) in items" :key="index">
         <div class="text-white">{{ item.gerName }}</div>
